@@ -14,10 +14,16 @@ import storage from 'redux-persist/lib/storage';
 import { modalReducer } from './modal/slice';
 import { carsReducer } from './cars/slice';
 
+const carsPersistConfig = {
+  key: 'cars',
+  storage,
+  whitelist: ['favoriteCars'],
+};
+
 export const store = configureStore({
   reducer: {
     modal: modalReducer,
-    cars: carsReducer,
+    cars: persistReducer(carsPersistConfig, carsReducer),
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

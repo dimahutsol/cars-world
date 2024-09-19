@@ -7,9 +7,9 @@ export const advertsApi = axios.create({
 
 export const fetchAllCarsThunk = createAsyncThunk(
   'cars/fetchAllCars',
-  async (_, thunkApi) => {
+  async (params, thunkApi) => {
     try {
-      const { data } = await advertsApi.get('adverts');
+      const { data } = await advertsApi.get('adverts', { params });
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

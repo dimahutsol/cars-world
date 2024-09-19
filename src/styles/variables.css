@@ -1,0 +1,15 @@
+:root {
+  --colorTextPrimary: #121417;
+  --colorTextSecondary: rgba(18, 20, 23, 0.5);
+  --colorTextSecondaryTransparent: rgba(18, 20, 23, 0.2);
+  --colorTextAdditional: #8a8a89;
+
+  --colorAccent: #3470ff;
+  --colorAccentHover: #0b44cd;
+  --colorWhite: #fff;
+  --colorDark: #121417;
+  --colorDarkGrey: #363535;
+  --colorBackdrop: rgba(18, 20, 23, 0.5);
+
+  --transition: 0.2s ease-in-out;
+}

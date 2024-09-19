@@ -1,0 +1,47 @@
+.iconButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: transparent;
+  border: none;
+  transition: transform 0.2s ease-in-out;
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
+}
+
+.closeIcon {
+  width: 24px;
+  height: 24px;
+  stroke: var(--colorDark);
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--colorBackdrop);
+  z-index: 997;
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  border-radius: 24px;
+  border: none;
+  background-color: var(--colorWhite);
+  padding: 40px;
+  overflow-y: hidden;
+  max-height: 95vh;
+}

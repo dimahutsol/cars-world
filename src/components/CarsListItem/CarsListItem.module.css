@@ -1,5 +1,131 @@
 .wrapper {
-  height: 200px;
-  width: 200px;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapperOnModal {
+  composes: wrapper;
+  min-width: 470px;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
+.imageBox {
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.image {
+  height: 268px;
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.imageOnModal {
+  composes: image;
+  height: auto;
+  max-height: 300px;
+}
+
+.icon {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 22px;
+  height: 22px;
+  stroke: white;
+  fill: transparent;
+  cursor: pointer;
+  transition: all var(--transition);
+  &:hover,
+  &:focus {
+    stroke: var(--colorAccent);
+    fill: var(--colorAccent);
+  }
+}
+
+.iconActive {
+  stroke: var(--colorAccent);
+  fill: var(--colorAccent);
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.name {
+  font-weight: 600;
+  color: var(--colorTextPrimary);
+}
+
+.nameOnModal {
+  composes: name;
+  font-size: 18px;
+}
+
+.nameAccent {
+  color: var(--colorAccent);
+}
+
+.price {
+  font-weight: 600;
+  color: var(--colorTextPrimary);
+}
+
+.tagsListBox {
+  margin-bottom: 28px;
+}
+
+.tagsListBoxInModal {
+  margin-bottom: 14px;
+}
+
+.description {
+  font-size: 14px;
+  color: var(--colorTextPrimary);
+  margin-bottom: 24px;
+}
+
+.subtitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--colorTextPrimary);
+  margin-bottom: 8px;
+}
+
+.functionsBox {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+
+.conditionsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.conditionsItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 14px;
+  background-color: #f9f9f9;
+  border-radius: 35px;
+  font-size: 12px;
+  color: var(--colorDarkGrey);
+}
+
+.conditionsItemAccent {
+  color: var(--colorAccent);
+  font-weight: 600;
+}
+
+.buttonBoxOnModal a {
+  padding: 12px 50px;
 }
