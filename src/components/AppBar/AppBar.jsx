@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
+import { FaCar } from 'react-icons/fa';
 
 import Navigation from '../Navigation/Navigation';
 import Container from '../Container/Container';
-import Icon from '../Icon/Icon';
 
 import s from './AppBar.module.css';
 
@@ -12,7 +12,7 @@ const AppBar = () => {
       <Container>
         <div className={s.wrapper}>
           <NavLink className={s.logoBox} to="/">
-            <Icon name="icon-car" className={s.logoIcon} />
+            <FaCar className={s.logoIcon} />
             CarsWorld
           </NavLink>
           <Navigation />

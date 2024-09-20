@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import CustomModal from '../CustomModal/CustomModal';
 import CarsListItem from '../CarsListItem/CarsListItem';
 import TagsList from '../TagsList/TagsList';
-import Icon from '../Icon/Icon';
 import Loader from '../Loader/Loader';
 
 import { openModal } from '../../redux/modal/slice';
@@ -79,7 +78,6 @@ const CarsList = ({ items, favoriteItems }) => {
                 src={activeCar.img}
                 alt={activeCar.make}
               />
-              <Icon name="icon-heart" className={t.icon} />
             </div>
             <div className={t.info}>
               <p className={t.nameOnModal}>

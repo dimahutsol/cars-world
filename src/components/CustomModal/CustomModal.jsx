@@ -1,8 +1,7 @@
 import Modal from 'react-modal';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import Icon from '../Icon/Icon';
+import { CgClose } from 'react-icons/cg';
 
 import { closeModal } from '../../redux/modal/slice';
 import { selectActiveModal } from '../../redux/modal/selector';
@@ -30,7 +29,7 @@ const CustomModal = ({ children, type }) => {
       overlayClassName={s.modalOverlay}
     >
       <button className={s.iconButton} onClick={handleCloseModal}>
-        <Icon name="icon-close" className={s.closeIcon} />
+        <CgClose className={s.closeIcon} />
       </button>
 
       {children}

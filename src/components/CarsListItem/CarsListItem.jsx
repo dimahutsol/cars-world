@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
+import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import clsx from 'clsx';
 
 import Button from '../Button/Button';
-import Icon from '../Icon/Icon';
 import TagsList from '../TagsList/TagsList';
 
 import { toggleFavoriteCar } from '../../redux/cars/slice';
@@ -66,13 +66,14 @@ const CarsListItem = ({
     <div className={s.wrapper}>
       <div className={s.imageBox}>
         <img className={s.image} src={img} alt={make} />
-        <Icon
-          onClick={handleLikeClick}
-          name="icon-heart"
-          height="24"
-          width="24"
-          className={clsx(s.icon, isFavoriteCar && s.iconActive)}
-        />
+        {isFavoriteCar ? (
+          <FaRegHeart onClick={handleLikeClick} className={s.icon} />
+        ) : (
+          <FaHeart
+            onClick={handleLikeClick}
+            className={clsx(s.icon, s.iconActive)}
+          />
+        )}
       </div>
       <div className={s.info}>
         <p className={s.name}>

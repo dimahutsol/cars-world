@@ -22,7 +22,6 @@
 
 .logoIcon {
   stroke: var(--colorAccent);
-  fill: transparent;
   width: 30px;
   height: 30px;
 }

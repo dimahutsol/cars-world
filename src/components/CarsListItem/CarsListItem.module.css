@@ -38,13 +38,13 @@
   right: 14px;
   width: 22px;
   height: 22px;
-  stroke: white;
-  fill: transparent;
+  stroke: transparent;
+  fill: white;
   cursor: pointer;
   transition: all var(--transition);
   &:hover,
   &:focus {
-    stroke: var(--colorAccent);
+    fill: var(--colorAccent);
   }
 }
 
