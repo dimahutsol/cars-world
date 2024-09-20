@@ -68,7 +68,9 @@ const CarsListItem = ({
         <img className={s.image} src={img} alt={make} />
         <Icon
           onClick={handleLikeClick}
-          name={'icon-heart'}
+          name="icon-heart"
+          height="24"
+          width="24"
           className={clsx(s.icon, isFavoriteCar && s.iconActive)}
         />
       </div>

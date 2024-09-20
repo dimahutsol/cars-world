@@ -79,7 +79,7 @@ const CarsList = ({ items, favoriteItems }) => {
                 src={activeCar.img}
                 alt={activeCar.make}
               />
-              <Icon name={'icon-heart'} className={t.icon} />
+              <Icon name="icon-heart" className={t.icon} />
             </div>
             <div className={t.info}>
               <p className={t.nameOnModal}>
