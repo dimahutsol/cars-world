@@ -1,14 +1,20 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+
 import { fetchAllCarsThunk } from './operations';
+import { toastError, toastSuccess } from '../../helpers/toasts';
 
 const initialState = {
   cars: [],
   favoriteCars: [],
   filter: '',
+  filterRentalPrice: null,
+  filterMileageFrom: null,
+  filterMileageTo: null,
+  maxCarsRentalPrice: 0,
   page: 1,
   total: 32,
-  loading: false,
-  error: false,
+  isLoading: false,
+  isError: false,
 };
 
 const carsSlice = createSlice({
@@ -16,14 +22,27 @@ const carsSlice = createSlice({
   initialState,
   reducers: {
     toggleFavoriteCar(state, { payload }) {
-      if (state.favoriteCars.includes(payload)) {
-        state.favoriteCars = state.favoriteCars.filter(id => id !== payload);
+      if (state.favoriteCars.some(item => item.id === payload.id)) {
+        state.favoriteCars = state.favoriteCars.filter(
+          item => item.id !== payload.id
+        );
+        toastSuccess('Removed from favorites');
       } else {
         state.favoriteCars.push(payload);
+        toastSuccess('Added to favorites');
       }
     },
     setFilter(state, { payload }) {
-      state.filter = payload === 'all' ? '' : payload;
+      state.filter = payload.value === 'all' ? '' : payload;
+    },
+    setFilterRentalPrice(state, { payload }) {
+      state.filterRentalPrice = payload;
+    },
+    setFilterMileageFrom(state, { payload }) {
+      state.filterMileageFrom = payload;
+    },
+    setFilterMileageTo(state, { payload }) {
+      state.filterMileageTo = payload;
     },
   },
   extraReducers: builder => {
@@ -32,21 +51,32 @@ const carsSlice = createSlice({
         state.total = payload.total ?? state.total;
         state.cars = [...state.cars, ...payload];
         state.page++;
+        state.maxCarsRentalPrice = state.cars.reduce((acc, item) => {
+          const price = parseFloat(item.rentalPrice.replace('$', ''));
+          return price > acc ? price : acc;
+        }, 0);
       })
       .addMatcher(isAnyOf(fetchAllCarsThunk.fulfilled), state => {
-        state.loading = false;
-        state.error = false;
+        state.isLoading = false;
+        state.isError = false;
       })
       .addMatcher(isAnyOf(fetchAllCarsThunk.pending), state => {
-        state.loading = true;
-        state.error = false;
+        state.isLoading = true;
+        state.isError = false;
       })
       .addMatcher(isAnyOf(fetchAllCarsThunk.rejected), state => {
-        state.loading = false;
-        state.error = true;
+        state.isLoading = false;
+        state.isError = true;
+        toastError();
       });
   },
 });
 
 export const carsReducer = carsSlice.reducer;
-export const { toggleFavoriteCar, setFilter } = carsSlice.actions;
+export const {
+  toggleFavoriteCar,
+  setFilter,
+  setFilterRentalPrice,
+  setFilterMileageFrom,
+  setFilterMileageTo,
+} = carsSlice.actions;

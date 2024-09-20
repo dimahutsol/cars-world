@@ -8,7 +8,7 @@ import s from './Layout.module.css';
 
 const Layout = () => {
   return (
-    <div className={s.wrapper}>
+    <div className={s.layout}>
       <AppBar />
       <Suspense fallback={<Loader />}>
         <Outlet />

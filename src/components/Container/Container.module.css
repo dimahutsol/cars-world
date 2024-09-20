@@ -4,15 +4,3 @@
   padding: 0 16px;
   margin: 0 auto;
 }
-
-@media (max-width: 1439px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media (max-width: 767px) {
-  .container {
-    max-width: 320px;
-  }
-}

@@ -1,6 +1,39 @@
+.header {
+  background-color: var(--colorLightGrey);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+  padding: 10px 0;
+}
+
 .wrapper {
-  background-color: bisque;
   display: flex;
   justify-content: space-between;
-  padding: 15px;
+  align-items: center;
+}
+
+.logoBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--colorAccent);
+}
+
+.logoIcon {
+  stroke: var(--colorAccent);
+  fill: transparent;
+  width: 30px;
+  height: 30px;
+}
+
+@media (max-width: 480px) {
+  .logoBox {
+    font-size: 12px;
+  }
+
+  .logoIcon {
+    width: 20px;
+    height: 20px;
+  }
 }

@@ -1,53 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CustomModal from '../CustomModal/CustomModal';
 import CarsListItem from '../CarsListItem/CarsListItem';
 import TagsList from '../TagsList/TagsList';
 import Icon from '../Icon/Icon';
-import CustomSelect from '../CustomSelect/CustomSelect';
+import Loader from '../Loader/Loader';
 
-import {
-  selectCars,
-  selectFavoriteCars,
-  selectFilter,
-  selectPage,
-  selectTotal,
-} from '../../redux/cars/selector';
 import { openModal } from '../../redux/modal/slice';
-import { fetchAllCarsThunk } from '../../redux/cars/operations';
-import makes from '../../helpers/data.json';
+import { selectIsLoading } from '../../redux/cars/selector';
 import s from './CarsList.module.css';
 import t from '../CarsListItem/CarsListItem.module.css';
 import y from '../Button/Button.module.css';
-import { setFilter } from '../../redux/cars/slice';
 
-const CarsList = () => {
+const CarsList = ({ items, favoriteItems }) => {
   const [activeCar, setActiveCar] = useState(null);
   const [activeCarTags, setActiveCarTags] = useState([]);
   const [activeCarConditions, setActiveCarConditions] = useState([]);
-  const [carsToShow, setCarsToShow] = useState([]);
 
   const dispatch = useDispatch();
 
-  const cars = useSelector(selectCars);
-  const favoriteCars = useSelector(selectFavoriteCars);
-  const filter = useSelector(selectFilter);
-  const page = useSelector(selectPage);
-  const total = useSelector(selectTotal);
-
-  const makesOptions = makes.map(item => ({
-    value: item.toLowerCase(),
-    label: item,
-  }));
-
-  const handleSelectChange = e => {
-    dispatch(setFilter(e.value));
-  };
-
-  const handleLoadMore = () => {
-    dispatch(fetchAllCarsThunk({ page, limit: 12 }));
-  };
+  const isLoading = useSelector(selectIsLoading);
 
   const openActiveCarModal = (car, tags) => {
     setActiveCar(car);
@@ -73,35 +46,28 @@ const CarsList = () => {
     dispatch(openModal('carInfoModal'));
   };
 
-  useEffect(() => {
-    if (filter === '') {
-      setCarsToShow(cars);
-      return;
-    }
-    const actualCars = cars.filter(
-      car => car.make.toLowerCase() === filter.toLowerCase()
-    );
-    setCarsToShow(actualCars);
-  }, [cars, filter]);
-
   return (
     <div>
-      <CustomSelect options={makesOptions} onChange={handleSelectChange} />
-      <ul className={s.list}>
-        {carsToShow.map(car => (
-          <li className={s.listItem} key={car.id}>
-            <CarsListItem
-              car={car}
-              setActiveCar={tags => openActiveCarModal(car, tags)}
-              isFavoriteCar={favoriteCars.includes(car.id)}
-            />
-          </li>
-        ))}
-      </ul>
-      {cars.length < total && (
-        <div className={s.loadMoreBox}>
-          <button onClick={handleLoadMore}>Load more</button>
-        </div>
+      {items.length > 0 && (
+        <ul className={s.list}>
+          {items.map(car => (
+            <li className={s.listItem} key={car.id}>
+              <CarsListItem
+                car={car}
+                setActiveCar={tags => openActiveCarModal(car, tags)}
+                isFavoriteCar={favoriteItems.some(item => item.id === car.id)}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {isLoading && <Loader small />}
+
+      {items.length === 0 && !isLoading && (
+        <p className={s.text}>
+          Sorry, there is nothing for this request, try changing the filters.
+        </p>
       )}
 
       <CustomModal type={'carInfoModal'}>

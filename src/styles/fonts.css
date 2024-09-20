@@ -25,3 +25,11 @@
   font-weight: 700;
   src: url('../assets/fonts/Manrope/Manrope-Bold.ttf') format('truetype');
 }
+
+@font-face {
+  font-family: 'Jacques';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/Jacques/JacquesFrancoisShadow-Regular.ttf')
+    format('truetype');
+}

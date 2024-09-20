@@ -1,6 +1,6 @@
 import s from './TagsList.module.css';
 
-const TagsList = ({ tags }) => {
+const TagsList = ({ tags = [] }) => {
   return (
     <ul className={s.tagsList}>
       {tags.map((tag, index) => (

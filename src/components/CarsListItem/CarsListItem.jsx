@@ -5,8 +5,8 @@ import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 import TagsList from '../TagsList/TagsList';
 
-import s from './CarsListItem.module.css';
 import { toggleFavoriteCar } from '../../redux/cars/slice';
+import s from './CarsListItem.module.css';
 
 const CarsListItem = ({
   car: {
@@ -19,6 +19,7 @@ const CarsListItem = ({
     img,
     rentalCompany,
     rentalPrice,
+    rentalConditions,
     functionalities,
     address,
   },
@@ -43,7 +44,22 @@ const CarsListItem = ({
   };
 
   const handleLikeClick = () => {
-    dispatch(toggleFavoriteCar(id));
+    dispatch(
+      toggleFavoriteCar({
+        id,
+        make,
+        model,
+        mileage,
+        year,
+        type,
+        img,
+        rentalCompany,
+        rentalPrice,
+        rentalConditions,
+        functionalities,
+        address,
+      })
+    );
   };
 
   return (

@@ -1,0 +1,116 @@
+.loadMoreBox {
+  display: flex;
+  justify-content: center;
+}
+
+.loadMoreBox button {
+  font-weight: 600;
+  color: var(--colorAccent);
+  text-decoration: underline;
+  background-color: transparent;
+  border: none;
+  margin: 100px 0 20px;
+  transition: color var(--transition);
+  &:hover,
+  &:focus {
+    color: var(--colorAccentHover);
+  }
+}
+
+.filtersBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin: 20px 0 50px;
+}
+
+.selectTitle {
+  color: #8a8a89;
+  font-size: 14px;
+  line-height: 1.3;
+  font-weight: 500;
+}
+
+.selectMakesBox {
+  width: 225px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.selectPriceBox {
+  width: 125px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputsBox {
+  display: flex;
+  gap: 0;
+}
+
+.input {
+  outline: none;
+  border: 0;
+  background-color: var(--colorLightGrey);
+  padding: 14px;
+  color: var(--colorTextPrimary);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1;
+  width: 160px;
+  &::placeholder {
+    color: var(--colorTextPrimary);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1;
+  }
+}
+
+.inputLeft {
+  border-radius: 14px 0px 0px 14px;
+  border-right: 1px solid rgba(138, 138, 137, 0.2);
+}
+
+.inputRight {
+  border-radius: 0px 14px 14px 0px;
+}
+
+.buttonBox {
+  align-self: flex-end;
+}
+
+.buttonBox button {
+  height: 48px;
+  min-width: 130px;
+}
+
+@media (max-width: 1439px) {
+  .selectMakesBox {
+    width: 200px;
+  }
+
+  .selectPriceBox {
+    width: 100px;
+  }
+
+  .input {
+    font-size: 18px;
+    width: 100px;
+  }
+}
+
+@media (max-width: 767px) {
+  .filtersBox {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+}

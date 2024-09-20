@@ -8,21 +8,32 @@
   width: calc((100% - 90px) / 4);
 }
 
-.loadMoreBox {
-  display: flex;
-  justify-content: center;
+.text {
+  font-size: 24px;
+  color: var(--colorTextPrimary);
+  text-align: center;
+  margin: 20px 0;
 }
 
-.loadMoreBox button {
-  font-weight: 600;
-  color: var(--colorAccent);
-  text-decoration: underline;
-  background-color: transparent;
-  border: none;
-  margin: 100px 0;
-  transition: color var(--transition);
-  &:hover,
-  &:focus {
-    color: var(--colorAccentHover);
+@media (max-width: 1439px) {
+  .listItem {
+    width: calc((100% - 60px) / 3);
+  }
+}
+
+@media (max-width: 767px) {
+  .list {
+    row-gap: 30px;
+    column-gap: 15px;
+  }
+
+  .listItem {
+    width: calc((100% - 15px) / 2);
+  }
+}
+
+@media (max-width: 480px) {
+  .listItem {
+    width: 100%;
   }
 }

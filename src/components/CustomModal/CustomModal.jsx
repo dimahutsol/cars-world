@@ -1,4 +1,5 @@
 import Modal from 'react-modal';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Icon from '../Icon/Icon';
@@ -16,6 +17,10 @@ const CustomModal = ({ children, type }) => {
   const handleCloseModal = () => {
     dispatch(closeModal());
   };
+
+  useEffect(() => {
+    document.body.style.overflow = activeModal ? 'hidden' : 'auto';
+  }, [activeModal]);
 
   return (
     <Modal

@@ -1,5 +1,11 @@
 export const selectCars = state => state.cars.cars;
 export const selectFavoriteCars = state => state.cars.favoriteCars;
 export const selectFilter = state => state.cars.filter;
+export const selectFilterRentalPrice = state => state.cars.filterRentalPrice;
+export const selectFilterMileageFrom = state => state.cars.filterMileageFrom;
+export const selectFilterMileageTo = state => state.cars.filterMileageTo;
+export const selectMaxCarsRentalPrice = state => state.cars.maxCarsRentalPrice;
 export const selectPage = state => state.cars.page;
 export const selectTotal = state => state.cars.total;
+export const selectIsLoading = state => state.cars.isLoading;
+export const selectIsError = state => state.cars.isError;
