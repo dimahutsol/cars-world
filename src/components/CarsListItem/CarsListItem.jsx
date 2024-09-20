@@ -67,12 +67,12 @@ const CarsListItem = ({
       <div className={s.imageBox}>
         <img className={s.image} src={img} alt={make} />
         {isFavoriteCar ? (
-          <FaRegHeart onClick={handleLikeClick} className={s.icon} />
-        ) : (
           <FaHeart
             onClick={handleLikeClick}
             className={clsx(s.icon, s.iconActive)}
           />
+        ) : (
+          <FaRegHeart onClick={handleLikeClick} className={s.icon} />
         )}
       </div>
       <div className={s.info}>
