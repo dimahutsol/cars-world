@@ -12,7 +12,11 @@ const FavoritesPage = () => {
   return (
     <Container>
       <div className={s.wrapper}>
-        <CarsList items={favoriteCars} favoriteItems={favoriteCars} />
+        <CarsList
+          items={favoriteCars}
+          favoriteItems={favoriteCars}
+          alternative
+        />
       </div>
     </Container>
   );

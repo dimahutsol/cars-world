@@ -12,7 +12,7 @@ import s from './CarsList.module.css';
 import t from '../CarsListItem/CarsListItem.module.css';
 import y from '../Button/Button.module.css';
 
-const CarsList = ({ items, favoriteItems }) => {
+const CarsList = ({ items, favoriteItems, alternative }) => {
   const [activeCar, setActiveCar] = useState(null);
   const [activeCarTags, setActiveCarTags] = useState([]);
   const [activeCarConditions, setActiveCarConditions] = useState([]);
@@ -20,6 +20,9 @@ const CarsList = ({ items, favoriteItems }) => {
   const dispatch = useDispatch();
 
   const isLoading = useSelector(selectIsLoading);
+  const textStub = alternative
+    ? 'It seems that you have not yet added any car to your favorites.'
+    : 'Sorry, there is nothing for this request, try changing the filters.';
 
   const openActiveCarModal = (car, tags) => {
     setActiveCar(car);
@@ -63,11 +66,7 @@ const CarsList = ({ items, favoriteItems }) => {
 
       {isLoading && <Loader small />}
 
-      {items.length === 0 && !isLoading && (
-        <p className={s.text}>
-          Sorry, there is nothing for this request, try changing the filters.
-        </p>
-      )}
+      {items.length === 0 && !isLoading && <p className={s.text}>{textStub}</p>}
 
       <CustomModal type={'carInfoModal'}>
         {activeCar && (
