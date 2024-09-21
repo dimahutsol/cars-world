@@ -5,12 +5,14 @@ import CustomModal from '../CustomModal/CustomModal';
 import CarsListItem from '../CarsListItem/CarsListItem';
 import TagsList from '../TagsList/TagsList';
 import Loader from '../Loader/Loader';
+import Button from '../Button/Button';
 
 import { openModal } from '../../redux/modal/slice';
 import { selectIsLoading } from '../../redux/cars/selector';
 import s from './CarsList.module.css';
 import t from '../CarsListItem/CarsListItem.module.css';
 import y from '../Button/Button.module.css';
+import { NavLink } from 'react-router-dom';
 
 const CarsList = ({ items, favoriteItems, alternative }) => {
   const [activeCar, setActiveCar] = useState(null);
@@ -20,9 +22,20 @@ const CarsList = ({ items, favoriteItems, alternative }) => {
   const dispatch = useDispatch();
 
   const isLoading = useSelector(selectIsLoading);
-  const textStub = alternative
-    ? 'It seems that you have not yet added any car to your favorites.'
-    : 'Sorry, there is nothing for this request, try changing the filters.';
+  const stub = alternative ? (
+    <div className={s.stubBox}>
+      <p className={s.text}>
+        It seems that you have not yet added any car to your favorites.
+      </p>
+      <NavLink to="/catalog">
+        <Button>Back to Catalog</Button>
+      </NavLink>
+    </div>
+  ) : (
+    <p className={s.text}>
+      Sorry, there is nothing for this request, try changing the filters.
+    </p>
+  );
 
   const openActiveCarModal = (car, tags) => {
     setActiveCar(car);
@@ -66,7 +79,7 @@ const CarsList = ({ items, favoriteItems, alternative }) => {
 
       {isLoading && <Loader small />}
 
-      {items.length === 0 && !isLoading && <p className={s.text}>{textStub}</p>}
+      {items.length === 0 && !isLoading && stub}
 
       <CustomModal type={'carInfoModal'}>
         {activeCar && (
