@@ -1,3 +1,7 @@
+.wrapper {
+  padding-bottom: 15px;
+}
+
 .loadMoreBox {
   display: flex;
   justify-content: center;

@@ -153,52 +153,54 @@ const CatalogPage = () => {
 
   return (
     <Container>
-      <div className={s.filtersBox}>
-        <div className={s.selectMakesBox}>
-          <p className={s.selectTitle}>Car brand</p>
-          <CustomSelect
-            options={makesOptions}
-            onChange={handleMakeSelectChange}
-            defaultValue={filter || null}
-            placeholder={'Enter the text'}
-          />
-        </div>
-        <div className={s.selectPriceBox}>
-          <p className={s.selectTitle}>Price/ 1 hour</p>
-          <CustomSelect
-            options={priceOptions}
-            onChange={handlePriceSelectChange}
-            defaultValue={filterRentalPrice || null}
-            placeholder={'To $'}
-          />
-        </div>
-        <div className={s.inputsWrapper}>
-          <p className={s.selectTitle}>Сar mileage / km</p>
-          <div className={s.inputsBox}>
-            <input
-              className={clsx(s.input, s.inputLeft)}
-              type="number"
-              onChange={handleMileageFromInputChange}
-              placeholder="From"
-            />
-            <input
-              className={clsx(s.input, s.inputRight)}
-              type="number"
-              onChange={handleMileageToInputChange}
-              placeholder="To"
+      <div className={s.wrapper}>
+        <div className={s.filtersBox}>
+          <div className={s.selectMakesBox}>
+            <p className={s.selectTitle}>Car brand</p>
+            <CustomSelect
+              options={makesOptions}
+              onChange={handleMakeSelectChange}
+              defaultValue={filter || null}
+              placeholder={'Enter the text'}
             />
           </div>
+          <div className={s.selectPriceBox}>
+            <p className={s.selectTitle}>Price/ 1 hour</p>
+            <CustomSelect
+              options={priceOptions}
+              onChange={handlePriceSelectChange}
+              defaultValue={filterRentalPrice || null}
+              placeholder={'To $'}
+            />
+          </div>
+          <div className={s.inputsWrapper}>
+            <p className={s.selectTitle}>Сar mileage / km</p>
+            <div className={s.inputsBox}>
+              <input
+                className={clsx(s.input, s.inputLeft)}
+                type="number"
+                onChange={handleMileageFromInputChange}
+                placeholder="From"
+              />
+              <input
+                className={clsx(s.input, s.inputRight)}
+                type="number"
+                onChange={handleMileageToInputChange}
+                placeholder="To"
+              />
+            </div>
+          </div>
+          <div className={s.buttonBox}>
+            <Button onClick={handleSearchButton}>Search</Button>
+          </div>
         </div>
-        <div className={s.buttonBox}>
-          <Button onClick={handleSearchButton}>Search</Button>
-        </div>
+        <CarsList items={carsToShow} favoriteItems={favoriteCars} />
+        {cars.length < total && !isLoading && carsToShow.length > 0 && (
+          <div className={s.loadMoreBox}>
+            <button onClick={handleLoadMore}>Load more</button>
+          </div>
+        )}
       </div>
-      <CarsList items={carsToShow} favoriteItems={favoriteCars} />
-      {cars.length < total && !isLoading && carsToShow.length > 0 && (
-        <div className={s.loadMoreBox}>
-          <button onClick={handleLoadMore}>Load more</button>
-        </div>
-      )}
     </Container>
   );
 };
