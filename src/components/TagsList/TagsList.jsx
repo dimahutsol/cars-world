@@ -1,11 +1,13 @@
 import s from './TagsList.module.css';
 
 const TagsList = ({ tags = [] }) => {
+  console.log(tags);
+
   return (
     <ul className={s.tagsList}>
       {tags.map((tag, index) => (
         <li className={s.tagListItem} key={index}>
-          {tag}
+          {typeof tag === 'number' ? tag.toLocaleString() : tag}
         </li>
       ))}
     </ul>

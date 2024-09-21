@@ -45,7 +45,11 @@ const CarsList = ({ items, favoriteItems, alternative }) => {
     const carRentArr = car.rentalConditions.split('\n');
     const carMileage = (
       <p>
-        Mileage: <span className={t.conditionsItemAccent}> {car.mileage}</span>
+        Mileage:{' '}
+        <span className={t.conditionsItemAccent}>
+          {' '}
+          {car.mileage.toLocaleString()}
+        </span>
       </p>
     );
     const carPrice = (
